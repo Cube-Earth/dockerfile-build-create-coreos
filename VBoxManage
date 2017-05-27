@@ -1,0 +1,29 @@
+#!/bin/bash
+if [[ $# -lt 3 ]] || [[ "$1" -ne "convertdd" ]]
+then
+	echo "xx $1"
+	echo "ERROR: malformed invocation!"
+	echo "invoked command line:"
+	echo "VBoxManage $*"
+	exit 1
+fi
+
+mv $2 `dirname $3`/`basename $3 .vdi`.bin
+
+host_dir='$HOME/VirtualBox VMs/CoreOS Template'
+host_src_file="$host_dir/`basename $3 .vdi`.bin"
+host_dst_file="$host_dir/`basename $3`"
+
+echo
+echo "################################################################################"
+echo
+echo "Please invoke the following command on your host system:"
+echo
+echo "VBoxManage convertdd \"$host_src_file\" \"$host_dst_file\" --format VDI"
+echo
+echo and remove the following file:
+echo
+echo "rm \"$host_src_file\""
+echo
+echo "################################################################################"
+echo

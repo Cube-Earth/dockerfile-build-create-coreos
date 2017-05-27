@@ -1,0 +1,12 @@
+version: '2'
+services:
+  build-create-coreos:
+    build:
+        context: .
+        args:
+            - http_proxy
+            - https_proxy
+            - no_proxy
+    image: cubeearth/build-create-coreos
+    volumes:
+    - $HOME/VirtualBox VMs/CoreOS Template:/VMs/CoreOS:rw    
